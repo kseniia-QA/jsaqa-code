@@ -1,6 +1,6 @@
 const { chromium } = require("playwright");
-const user = require("../../data");
-const { test, expect } = require("@playwright/tests");
+const user = require("../../playwright/data/user");
+const { test, expect } = require("../../playwright/tests");
 
 (async () => {
 	const browser = await chromium.launch({
