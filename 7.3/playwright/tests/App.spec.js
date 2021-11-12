@@ -1,22 +1,39 @@
-const { test, expect } = require("@playwright/test");
+const { chromium } = require("playwright");
+const user = require("../../data");
+const { test, expect } = require("@playwright/tests");
 
-test("test", async ({ page }) => {
-  // Go to https://netology.ru/free/management#/
-  await page.goto("https://netology.ru/free/management#/");
+(async () => {
+	const browser = await chromium.launch({
+		headless: false,
+		slowMo: 5000,
+		// devtools: true
+		// node NetologyTest.js
+	});
+	const page = await browser.newPage();
+  
+  await page.goto("https://netology.ru/?modal=sign_in");
+   await page.fill('[placeholder="Email"]', user.email);
+   await page.fill('[placeholder="Пароль"]', user.password);
+   await page.click('text=Войти');
+   const content = page.locator("h2.components-pages-Profile-Programs-programs-module__title--NCjbp") 
+   await expect(content).toHaveText("Мои курсы и профессии")
 
-  // Click a
-  await page.click("a");
-  await expect(page).toHaveURL("https://netology.ru/");
-
-  // Click text=Учиться бесплатно
-  await page.click("text=Учиться бесплатно");
-  await expect(page).toHaveURL("https://netology.ru/free");
-
-  page.click("text=Бизнес и управление");
-
-  // Click text=Как перенести своё дело в онлайн
-  await page.click("text=Как перенести своё дело в онлайн");
-  await expect(page).toHaveURL(
-    "https://netology.ru/programs/kak-perenesti-svoyo-delo-v-onlajn-bp"
-  );
-});
+   await browser.close();
+  })();
+  
+  (async () => {
+    const browser = await chromium.launch({
+      headless: false,
+      slowMo: 5000,
+      // devtools: true
+      // node NetologyTest.js
+    });
+    const page = await browser.newPage();
+  
+  await page.goto("https://netology.ru/?modal=sign_in");
+  await page.fill('[placeholder="Email"]', "d@mail.ru");
+  await page.fill('[placeholder="Пароль"]', "ffff");
+  await page.click('text=Войти');
+  const content = page.locator("div.components-ui-Form-Hint-hint-module__hint--A2dPV.inputHint")
+  await expect(content).toHaveText("Вы ввели неправильно логин или пароль")
+})
