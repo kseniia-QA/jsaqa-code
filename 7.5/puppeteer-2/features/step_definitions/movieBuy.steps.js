@@ -45,3 +45,32 @@ Then('user sees text {string}', async function (string) {
 });
 
 
+Given('user goes to {string} page', async function (string) {
+		return await this.page.goto(`${string}`, {
+			setTimeout: 20000,
+		});
+	});
+
+When('user chooses weekday {string}', async function (string) {
+	await clickElement(this.page, `${string}`); //choose day
+});
+When('user chooses movietime {string}', async function (string) {
+	await clickElement(this.page, `${string}`); //choose time
+});
+When('user chooses seat {string}', async function (string) {
+	await clickElement(this.page, `${string}`); //choose chair
+});
+When('user choose second chair {string}', async function (string) {
+	await clickElement(this.page, `${string}`); //choose chair
+});
+When('user clicks affirmation {string}', async function (string) {
+	await clickElement(this.page, `${string}`); //click booking
+
+Then('user sees success {string}', async function (string) {
+    const actual = await getText(this.page, 'h2.ticket__check-title');
+    const expected = await string;
+    expect(actual).contains(expected);
+  });
+});
+
+
