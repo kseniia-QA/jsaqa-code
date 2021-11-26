@@ -1,16 +1,18 @@
 let page;
 
-beforeEach(async () => {
-	page = await browser.newPage();
-	
-	await page.goto('https://netology.ru');
-}, 30000);
+
 
 afterEach(() => {
 	page.close();
 });
 
 describe('Netology.ru tests', () => {
+	beforeEach(async () => {
+	page = await browser.newPage();
+	
+	await page.goto('https://netology.ru');
+}, 30000);
+	
 	test("The first test'", async () => {
 		const title = await page.title();
 		console.log('Page title: ' + title);
