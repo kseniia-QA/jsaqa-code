@@ -22,7 +22,7 @@ const { test, expect } = require("../../playwright/tests");
   })();
   
   (async () => {
-    const browser = await chromium.launch({
+    const browser = await chromium.launch({ 
       headless: false,
       slowMo: 5000,
       // devtools: true
