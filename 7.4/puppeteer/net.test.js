@@ -1,6 +1,8 @@
 let page;
 
-
+beforeEach(() => {
+page = await browser.newPage();
+});
 
 afterEach(() => {
 	page.close();
