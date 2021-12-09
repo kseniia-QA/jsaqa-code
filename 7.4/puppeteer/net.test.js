@@ -10,7 +10,6 @@ afterEach(() => {
 
 describe('Netology.ru tests', () => {
 	beforeEach(async () => {
-	page = await browser.newPage();
 	
 	await page.goto('https://netology.ru');
 }, 30000);
@@ -55,7 +54,6 @@ describe('Netology.ru tests', () => {
 
     
  test("Checks page with vacancies'", async () => { 
-  page = await browser.newPage();
       await page.goto("https://netology.ru/job");
       await page.waitForTimeout(3000);
       const actual = await page.$eval("h1.shared-containers-Jobs-components-Presentation-presentation-module__title--gkLaB", (link) => link.textContent);
@@ -63,7 +61,6 @@ describe('Netology.ru tests', () => {
   }, 15000);
 
 test("Checks page with experts", async () => { 
-  page = await browser.newPage();
       await page.goto("https://netology.ru/experts");
       await page.waitForTimeout(3000);
       const actual = await page.$eval("h1.tn-atom", (link) => link.textContent);
@@ -72,7 +69,6 @@ test("Checks page with experts", async () => {
 
  
 test("Checks page with partners", async () => { 
-  page = await browser.newPage();
       await page.goto("https://netology.ru/partners");
       await page.waitForTimeout(3000);
       const actual = await page.$eval("h1.shared-containers-Partners-components-Header-header-module__title--1vdjP", (link) => link.textContent);
